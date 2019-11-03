@@ -25,3 +25,12 @@ When I select the option “Adicionar à Lista de Desejos”
 Then I receive a message saying the product is not available
 And I am on “Caneca Dia dos Pais” page
 
+Scenario: Compartilhar Lista de Desejos
+Given I am logged as “Victor”
+And I am on “Lista de desejos” page
+And I see the “Compartilhar Lista” option
+When I add “Victor Hugo” for name
+And I add “vhlk@cin.ufpe.br” for email
+And I select the “Compartilhar Lista” option
+Then I receive a message saying the “Lista de Desejos” was sent successfully
+And I am on “Lista de Desejos” page
