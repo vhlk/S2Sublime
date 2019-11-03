@@ -113,3 +113,35 @@ defineSupportCode(function( {Given, When, Then, And}) {
     });
 
 })
+
+defineSupportCode(function( {Given, When, Then, And}) {
+    Given(/^I am on "([^\"]*)" page$/, async(produto) => {
+        await browser.get("http://localhost:4200/");
+        await element(by.name(produto)).click();
+        await expect(browser.getTitle()).to.eventually.equal(produto);
+    });
+    Given(/^I am logged as "([^\"]*)"$/, async (usuario) => {
+        var usr = element(by.name('user'));
+        await expect(usr.name()).to.eventually.equal(usuario);
+    });
+    And(/^I see the  “Compartilhar Lista” option$/, async(elemento) => {
+        var share = element(by.name('share_lista_des'));
+        await share.should.not.equal(null);
+    });
+    When(/^I add "([^\"]*)" for name$/, async(nome) => {
+        await $("input[name='lista_des_namebox']").sendKeys(<string> nome);
+    });
+    And(/^I add "([^\"]*)" for email$/, async(email) => {
+        await $("input[name='lista_des_emailbox']").sendKeys(<string> email);
+    });
+    And(/^I select the “Compartilhar Lista” option$/, async() => {
+        await element(by.name('share_lista_des')).click();
+    });
+    Then(/^I receive a message saying the “Lista de Desejos” was not sent successfully because the email is invalid$/, async() => {
+        var mensagem = element(by.name('mensagens'));
+        await expect(mensagem).to.eventually.equal("Não enviado, favor verificar email digitado!");
+    });
+    And(/^I am on "([^\"]*)" page$/, async(produto) => {
+        await expect(browser.getTitle()).to.eventually.equal(produto);
+    });
+})

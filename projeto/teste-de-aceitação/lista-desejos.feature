@@ -34,3 +34,13 @@ And I add “vhlk@cin.ufpe.br” for email
 And I select the “Compartilhar Lista” option
 Then I receive a message saying the “Lista de Desejos” was sent successfully
 And I am on “Lista de Desejos” page
+
+Scenario: Compartilhar Lista de Desejos com dados pessoais inválidos
+Given I am logged as “Victor”
+And I am on “Lista de desejos” page
+And I see the “Compartilhar Lista” option
+When I add “Victor Hugo” for name
+And I add “vhlk” for email
+And I select the “Compartilhar Lista” option
+Then I receive a message saying the “Lista de Desejos” was not sent successfully because the email is invalid
+And I am on “Lista de Desejos” page
