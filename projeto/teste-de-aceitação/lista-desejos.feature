@@ -15,3 +15,13 @@ Then I receive a message saying the product was added to “Lista de Desejos”
 And I am on “Caneca Dia dos Pais” page
 And I can see that my “Lista de desejos” shows “1”
 
+Scenario: Adição à lista de desejos de um produto fora de estoque
+Given exists a product “Caneca Dia dos Pais”
+And I am on “Caneca Dia dos Pais” page
+And I am logged as “Victor”
+And I see the “Adicionar à Lista de Desejos” option
+And the product “Caneca Dia dos Pais” is not on stock
+When I select the option “Adicionar à Lista de Desejos”
+Then I receive a message saying the product is not available
+And I am on “Caneca Dia dos Pais” page
+
