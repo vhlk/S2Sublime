@@ -24,8 +24,15 @@
     <td>Email: <input placeholder="Email da pessoa que deseja enviar aqui"></td>
   </tr>
   <tr>
-    <button type= "button" >Compartilhar Lista</button>
+    <button type= "button">Compartilhar Lista</button>
   </tr>
 </table>
+<h1>
+    Página do Produto
+</h1>
+<form *ngFor="let a of listEst">
+    <input type="checkbox" name="produto"> {{a.produto}} <input type="number" name= "qtdAdicionarLista" value="1" min="1" max={{a.quantidade}}">
+    <input type="submit" (click)="addListProds(a)">
+</form>
 </div>
 </html>

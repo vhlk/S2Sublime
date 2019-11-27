@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { listProd } from './listProd';
-import { Estoque } from './Estoque';
+import { Produto } from './Produto';
+import { EstoqueService } from './EstoqueService';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,23 @@ import { Estoque } from './Estoque';
 })
 
 export class AppComponent {
-  canecaPai: Estoque = {id: "12345", produto: "Caneca Dia dos Pais", quantidade: "15", imgSrc: "./assets/img/canecaDiaDosPais.jpg"};
-  canecaMae: Estoque = {id: "12346", produto: "Caneca Dia das Maes", quantidade: "15", imgSrc: "./assets/img/canecaDiaDasMaes.jpg"};
-  listProds: listProd[] = [];
+  estoqueService = new EstoqueService();
+  listProds: Produto[] = [];
+  listEst: Produto[] = this.listEstoque();
+
+  addListProds (produto: Produto): void {
+    let existe = false;
+    this.listProds.forEach(element => {
+      if(element.id == produto.id){
+        element.quantidade += produto.quantidade;
+        existe = true;
+      }
+    });
+    if(!existe)
+      this.listProds.push(produto)
+  }
+
+  listEstoque(): Produto[] {
+    return this.estoqueService.list();
+  }
 }

@@ -1,4 +1,4 @@
-export class listProd {
+export class Produto {
 id: string;
 produto: string;
 quantidade: string;
