@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Produto } from './Produto';
 import { EstoqueService } from './EstoqueService';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-root',
@@ -14,19 +15,29 @@ export class AppComponent {
   listProds: Produto[] = [];
   listEst: Produto[] = this.listEstoque();
 
-  addListProds (produto: Produto): void {
+  addListProds(produto: Produto, qtd:number): void {
     let existe = false;
-    this.listProds.forEach(element => {
-      if(element.id == produto.id){
-        element.quantidade += produto.quantidade;
+    for (let elem of this.listProds) {
+      if (elem.id === produto.id) {
+        elem.quantidade = qtd;
         existe = true;
       }
-    });
-    if(!existe)
-      this.listProds.push(produto)
+    }
+    if (!existe) {
+      let prod: Produto = new Produto(produto.id, produto.produto, qtd, produto.imgSrc);
+      this.listProds.push(prod);
+    }
   }
 
   listEstoque(): Produto[] {
     return this.estoqueService.list();
+  }
+
+  maxProdEstoque(produto: Produto): number {
+    for(let element of this.listEst)
+      if(element.id === produto.id) {
+        return element.quantidade;
+      }
+    return 0;
   }
 }
