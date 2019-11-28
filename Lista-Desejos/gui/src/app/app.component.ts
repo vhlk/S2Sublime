@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Produto } from './Produto';
 import { EstoqueService } from './EstoqueService';
 import { element } from 'protractor';
+import { ProdutosService } from './ProdutosService';
 
 @Component({
   selector: 'app-root',
@@ -11,22 +12,17 @@ import { element } from 'protractor';
 })
 
 export class AppComponent {
-  estoqueService = new EstoqueService();
+  constructor(private estoqueService: EstoqueService, private produtosService: ProdutosService ) {}
+
   listProds: Produto[] = [];
   listEst: Produto[] = this.listEstoque();
 
-  addListProds(produto: Produto, qtd:number): void {
-    let existe = false;
-    for (let elem of this.listProds) {
-      if (elem.id === produto.id) {
-        elem.quantidade = qtd;
-        existe = true;
-      }
+  addListProds(produto: Produto, qtd: number): void {
+    let prod = new Produto(produto.id, produto.produto, qtd, produto.imgSrc);
+    if(!this.produtosService.add(prod)){
+      this.produtosService.setQtd(prod, qtd);
     }
-    if (!existe) {
-      let prod: Produto = new Produto(produto.id, produto.produto, qtd, produto.imgSrc);
-      this.listProds.push(prod);
-    }
+    this.listProds = this.produtosService.list();
   }
 
   listEstoque(): Produto[] {
@@ -34,8 +30,8 @@ export class AppComponent {
   }
 
   maxProdEstoque(produto: Produto): number {
-    for(let element of this.listEst)
-      if(element.id === produto.id) {
+    for (let element of this.listEst)
+      if (element.id === produto.id) {
         return element.quantidade;
       }
     return 0;

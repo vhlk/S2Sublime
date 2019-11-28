@@ -1,38 +1,8 @@
 <!DOCTYPE html>
 <html>
-<h1>
-  Lista de desejos
-</h1>
-<div>
-  <table *ngFor="let a of listProds">
-  <tr>
-      <h2>{{a.produto}}</h2>
-  </tr>
-  <tr>
-    <td><img src={{a.imgSrc}} style="width: 343px;height: 244px;" alt="Caneca dia dos pais"></td>
-    <td><h3>Quantidade</h3>
-    <input type="number" value="{{a.quantidade}}" min="1" max="{{maxProdEstoque(a)}}">
-    </td>
-  
-</table>
-<h1>
-  Compartilhar Lista de Desejos:
-</h1>
-<table>
-  <tr>
-    <td>Nome: <input placeholder="Nome da pessoa que deseja enviar" name="compartilhar"></td>
-    <td>Email: <input placeholder="Email da pessoa que deseja enviar aqui" name="compartilhar"></td>
-  </tr>
-  <tr>
-    <button type= "button">Compartilhar Lista</button>
-  </tr>
-</table>
-<h1>
-    Página do Produto
-</h1>
-<form *ngFor="let a of listEst">
-    {{a.produto}} <input type="number" name= "qtdAdicionarLista" value="1" min="1" max={{a.quantidade}} #quantidade>
-    <input type="submit" (click)="addListProds(a, quantidade.value)" value="Adicionar à Lista de Desejos">
-</form>
-</div>
+  <nav>
+    <a routerLink="/ListaDesejos">Lista de Desejos</a> <br>
+    <a routerLink="/PaginaProduto">Pagina do Produto(Página Inicial)</a> <br>
+  </nav>
+<router-outlet></router-outlet>
 </html>

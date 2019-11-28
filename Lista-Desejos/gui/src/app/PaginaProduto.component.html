@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<h1>
+    Página do Produto
+</h1>
+<form *ngFor="let a of listEst">
+    {{a.produto}} <input type="number" name="qtdAdicionarLista" value="1" min="1" max={{a.quantidade}} #quantidade>
+    <input type="submit" (click)="addListProds(a, quantidade.value)" value="Adicionar à Lista de Desejos">
+</form>
+
+</html>

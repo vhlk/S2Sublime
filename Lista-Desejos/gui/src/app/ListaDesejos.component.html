@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<h1>
+  Lista de desejos
+</h1>
+<button type="button" (click)="updatePage()">Update Page</button>
+<div>
+  <table *ngFor="let a of listProds">
+    <tr>
+      <h2>{{a.produto}}</h2>
+    </tr>
+    <tr>
+      <td><img src={{a.imgSrc}} style="width: 343px;height: 244px;" alt="Caneca dia dos pais"></td>
+      <td>
+        <h3>Quantidade</h3>
+        <input type="number" value="{{a.quantidade}}" min="1" max="{{maxProdEstoque(a)}}">
+      </td>
+  </table>
+</div>
+<h1>
+  Compartilhar Lista de Desejos:
+</h1>
+<table>
+  <tr>
+    <td>Nome: <input placeholder="Nome da pessoa que deseja enviar" name="compartilhar"></td>
+    <td>Email: <input placeholder="Email da pessoa que deseja enviar aqui" name="compartilhar"></td>
+  </tr>
+  <tr>
+    <button type="button">Compartilhar Lista</button>
+  </tr>
+</table>
+
+</html>
