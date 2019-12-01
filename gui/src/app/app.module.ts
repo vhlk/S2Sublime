@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ListaDesejosComponent } from './ListaDesejos.component';
+import { ListaDesejosComponent } from './lista-desejos/lista-desejos.component';
 import { EstoqueService } from './EstoqueService';
 import { ProdutosService } from './ProdutosService';
 import { PaginaProdutoComponent } from './PaginaProduto.component';

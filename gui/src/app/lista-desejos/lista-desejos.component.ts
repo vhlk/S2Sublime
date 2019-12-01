@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { Produto } from './Produto';
-import { EstoqueService } from './EstoqueService';
-import { ProdutosService } from './ProdutosService';
+import { Produto } from '../Produto';
+import { EstoqueService } from '../EstoqueService';
+import { ProdutosService } from '../ProdutosService';
 
 @Component({
     selector: 'app-root',
-    templateUrl: './ListaDesejos.component.html',
+    templateUrl: './lista-desejos.component.html',
     styleUrls: []
 })
 
