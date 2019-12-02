@@ -17,6 +17,15 @@ export class PaginaProdutoComponent implements OnInit {
     listProds: Produto[] = [];
     listEst: Produto[] = this.listEstoque();
 
+    reservar(produto:Produto): void{
+        //servidor deve mandar um email para o vendedor para que ele efetue a reserva
+        if(produto.quantidade<1){
+            alert("Não foi possível solicitar a reserva. Produto esgotado!");
+        } else {
+            alert("Reserva solicitada com sucesso!");
+        }
+    }
+    
     addListProds(produto: Produto, qtd: number): void {
         let prod = new Produto(produto.id, produto.produto, qtd, produto.imgSrc);
         if (!this.produtosService.add(prod)) {

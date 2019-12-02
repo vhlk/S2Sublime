@@ -3,13 +3,23 @@
 <h1>
     Página do Produto
 </h1>
-<form *ngFor="let a of listEst">
+<form *ngFor="let a of listEst" class="produtos">
     <table>
-    <tr>
-        <td><img src="{{a.imgSrc}}" style="width: 270px;height: 220px"></td>
-        <td>{{a.produto}} <input type="number" name="qtdAdicionarLista" value="1" min="1" max={{a.quantidade}} #quantidade>
-        <input type="submit" (click)="addListProds(a, quantidade.value)" value="Adicionar à Lista de Desejos"></td>
-        </tr>    
+        <tr>
+            <td><img src="{{a.imgSrc}}" style="width: 270px;height: 220px"></td>
+            <td><table>
+                    {{a.produto}}
+                    <tr><input type="number" name="qtdAdicionarLista" value="1" min="1" max={{a.quantidade}}
+                            #quantidade>
+                        <input type="submit" (click)="addListProds(a, quantidade.value)"
+                            value="Adicionar à Lista de Desejos">
+                    </tr>
+                    <tr>
+                        <input type="submit" (click)="reservar(a)" value="Solicitar reserva do produto">
+                    </tr>
+            </table></td>
+        </tr>
     </table>
 </form>
+
 </html>
