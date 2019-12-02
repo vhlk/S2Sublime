@@ -1,0 +1,25 @@
+<link href="https://fonts.googleapis.com/css?family=Solway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<mat-toolbar>
+    <div class="icon"><img src="../assets/img/logoSublime.png"></div>
+    <div class="options">
+        <a class="button" routerLink="/lista-desejos" (click)="hideSearch()">&nbsp;Lista de Desejos&nbsp;</a>
+        <a class="button" routerLink="/PaginaProduto" (click)="hideSearch()">&nbsp;Página Inicial&nbsp;</a>
+        <div class="searchBar">
+            <input class="searchInput" [(ngModel)]="productName" type="text" placeholder="Buscar Produtos">
+            <button class="searchButton" (click)="search(productName)"> <i class="material-icons">search</i> </button>
+        </div>
+    </div>
+</mat-toolbar>
+
+<div *ngIf="searched">
+    <br><br><br>
+    <h3 align="center">{{searchedProds.length}} Resultados para sua pesquisa</h3>
+    <table *ngFor="let a of searchedProds">
+        <tr>
+            <h2>{{a.produto}}</h2>
+        </tr>
+        <tr>
+            <td><img src={{a.imgSrc}} style="width: 343px;height: 244px;" alt="a.produto"></td>
+    </table>
+</div>
