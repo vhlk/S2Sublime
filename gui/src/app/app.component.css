@@ -1,3 +1,5 @@
-.linkPages{
-    margin-top: 64px;
+.linkPages {
+    display: flex;
+    justify-content: center;
+    margin: 64px auto auto auto;
 }
