@@ -13,13 +13,15 @@ import { EstoqueService } from './EstoqueService';
 import { ProdutosService } from './ProdutosService';
 import { PaginaProdutoComponent } from './PaginaProduto.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaDesejosComponent,
     PaginaProdutoComponent,
-    NavBarComponent
+    NavBarComponent,
+    SidenavBarComponent
   ],
   imports: [
     BrowserModule,
