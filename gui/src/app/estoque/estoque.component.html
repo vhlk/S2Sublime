@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <div class="header">
+        <h1>Estoque</h1>
+        <a routerLink="/cadastro-de-produto" (click)="hideSearch()">Cadastrar Produto</a>
+    </div>
+    <div>
+        <table *ngFor="let a of listEst">
+            <tr>
+                <h2>{{a.produto}}</h2>
+            </tr>
+            <tr>
+                <td><img src="{{a.imgSrc}}" style="width: 343px;height: 244px;" alt="{{a.produto}}"></td>
+                <td>
+                    <h3>Quantidade</h3>
+                    <input type="number" value="{{maxProdEstoque(a)}}" #quantidade>
+                </td>
+                <td>
+                    <h3>Nome do Produto</h3>
+                    <input type="text" value="{{a.produto}}" #nome>
+                </td>
+                <td>
+                    <input type="submit" (click)="updateProduct(a, quantidade.value, nome.value)" value="Atualizar" id="updtBt">
+                </td>
+            </tr>
+        </table>
+    </div>
+</html>
