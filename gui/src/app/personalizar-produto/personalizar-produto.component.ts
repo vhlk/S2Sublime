@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface pedidoPersonalizado {
-  categoria: string;
-  cor:string;
-  quantidade:number;
-  mensagem:string;
-}
-
+import {PersonalizarProdutoService} from './personalizar-produto.service';
+import {PedidoPersonalizado} from '../pedido-personalizado';
 
 @Component({
   selector: 'app-personalizar-produto',
@@ -15,27 +9,29 @@ export interface pedidoPersonalizado {
 })
 export class PersonalizarProdutoComponent implements OnInit {
 
+  
+  pedido: PedidoPersonalizado = new PedidoPersonalizado("","",0,"");
   titulo: string;
   categorias: string[];
   cores: string[];
-  pedidos: pedidoPersonalizado[];
-
-  categoria:string;
-  cor:string;
-  quantidade:number;
-  mensagem:string;
-
-  constructor() { 
+  pedidos: PedidoPersonalizado[];
+  
+  constructor(private personalizarService: PersonalizarProdutoService) {
+    
     this.titulo = "Personalize seu produto";
-    this.categorias = ['Almofada','Camisa','Caneca','Quadro'];
-    this.cores = ['Amarelo','Azul','Branco','Cinza','Laranja','Marrom','Preto','Rosa','Verde','Vermelho','Violeta'];
-    this.pedidos = [];
-  }
-  ngOnInit() {
+    this.categorias = personalizarService.getCategorias();
+    this.cores = personalizarService.getCores();
   }
 
-  finalizarPedido(){
-    let novoPedido: pedidoPersonalizado = {categoria:this.categoria, cor:this.cor, quantidade:this.quantidade, mensagem:this.mensagem};
-    this.pedidos.push(novoPedido);
+  finalizarPedido(p:PedidoPersonalizado): void{
+    if(this.personalizarService.realizarPedido(p)){
+      this.pedidos.push(p);
+      this.pedido = new PedidoPersonalizado("","",0,"");
+    }
   }
+  
+  ngOnInit() {
+    this.pedidos = this.personalizarService.getPedidos();
+  }
+
 }

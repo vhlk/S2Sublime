@@ -17,6 +17,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
 import { PersonalizarProdutoComponent } from './personalizar-produto/personalizar-produto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PersonalizarProdutoService } from './personalizar-produto/personalizar-produto.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports: [
     MatToolbarModule,
   ],
-  providers: [EstoqueService, ProdutosService],
+  providers: [EstoqueService, ProdutosService, PersonalizarProdutoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
