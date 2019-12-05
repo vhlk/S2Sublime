@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Produto } from './Produto';
-import { EstoqueService } from './EstoqueService';
+import { EstoqueService } from './estoque/estoque.service';
 import { element } from 'protractor';
 import { ProdutosService } from './ProdutosService';
 

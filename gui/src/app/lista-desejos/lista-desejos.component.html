@@ -9,7 +9,7 @@
       <h2>{{a.produto}}</h2>
     </tr>
     <tr>
-      <td><img src={{a.imgSrc}} style="width: 343px;height: 244px;" alt="Caneca dia dos pais"></td>
+      <td><img src={{a.imgSrc}} style="width: 343px;height: 244px;" alt="{{a.produto}}"></td>
       <td>
         <h3>Quantidade</h3>
         <input type="number" value="{{a.quantidade}}" min="1" max="{{maxProdEstoque(a)}}" #qtd (change)="updateProdQtd(a,qtd.value)">

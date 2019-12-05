@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 
 
 import { ListaDesejosComponent } from './lista-desejos/lista-desejos.component';
-import { EstoqueService } from './EstoqueService';
+import { EstoqueService } from './estoque/estoque.service';
 import { ProdutosService } from './ProdutosService';
 import { PaginaProdutoComponent } from './PaginaProduto.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -18,6 +18,8 @@ import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
 import { PersonalizarProdutoComponent } from './personalizar-produto/personalizar-produto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonalizarProdutoService } from './personalizar-produto/personalizar-produto.service';
+import { EstoqueComponent } from './estoque/estoque.component';
+import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { PersonalizarProdutoService } from './personalizar-produto/personalizar-
     PaginaProdutoComponent,
     NavBarComponent,
     SidenavBarComponent,
-    PersonalizarProdutoComponent
+    PersonalizarProdutoComponent,
+    EstoqueComponent,
+    CadastroProdutoComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,14 @@ import { PersonalizarProdutoService } from './personalizar-produto/personalizar-
       {
         path: 'PersonalizarProduto',
         component: PersonalizarProdutoComponent
+      },
+      {
+        path: 'estoque',
+        component: EstoqueComponent
+      },
+      {
+        path: 'cadastro-de-produto',
+        component: CadastroProdutoComponent
       }
     ]),
     BrowserAnimationsModule
