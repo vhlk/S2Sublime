@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PedidoPersonalizado} from '../pedido-personalizado';
+import { PedidoPersonalizado} from '../../../../common/pedido-personalizado';
 
 @Injectable({
   providedIn: 'root'
