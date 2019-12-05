@@ -43,8 +43,13 @@ export class ListaDesejosComponent implements OnInit {
     }
 
     CompartilharLista(nome: string, email: string){
-        //mandar um email através do servidor
-        alert("Email enviado para "+nome);
+        if(email != "" && nome != "" && email.includes("@")){
+            //mandar um email através do servidor
+            alert("Email enviado para "+nome);
+        }
+        else{
+            alert("Verifique os dados digitados!");
+        }
     }
 
     ngOnInit(): void {
