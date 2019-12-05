@@ -31,4 +31,14 @@ export class EstoqueService {
         let novoProd = new Produto(newId,nome,qtd,"./assets/img/canecaDiaDosPais.jpg");
         this.produtos.push(novoProd);
     }
+
+    deleteProduct(prod: Produto):void{
+        let index;
+        for(let a of this.produtos){
+            if(a.id === prod.id){
+                index = this.produtos.indexOf(a);
+            }
+        }
+        this.produtos.splice(index,1);
+    }
 }
