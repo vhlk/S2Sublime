@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router'
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatInputModule, MatSelectModule, MatButtonModule} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { ProdutosService } from './ProdutosService';
 import { PaginaProdutoComponent } from './PaginaProduto.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
+import { PersonalizarProdutoComponent } from './personalizar-produto/personalizar-produto.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,16 @@ import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
     ListaDesejosComponent,
     PaginaProdutoComponent,
     NavBarComponent,
-    SidenavBarComponent
+    SidenavBarComponent,
+    PersonalizarProdutoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
     MatToolbarModule,
     RouterModule.forRoot([
       {
@@ -36,8 +43,13 @@ import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
       {
         path: 'PaginaProduto',
         component: PaginaProdutoComponent
+      },
+      {
+        path: 'PersonalizarProduto',
+        component: PersonalizarProdutoComponent
       }
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   exports: [
     MatToolbarModule,
