@@ -36,6 +36,13 @@ import { ProdutosService } from '../ProdutosService';
         this.updatePage();
     }
 
+    confirmPopUp(produto: Produto): void{
+        if(confirm("Você tem certeza que deseja deletar " + produto.produto + "?")){
+            this.estoqueService.deleteProduct(produto);
+            this.updatePage();
+        }
+    }
+
     ngOnInit() {
         this.listEst = this.estoqueService.list();
       }

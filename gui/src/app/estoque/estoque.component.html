@@ -2,7 +2,7 @@
 <html>
     <div class="header">
         <h1>Estoque</h1>
-        <a routerLink="/cadastro-de-produto" (click)="hideSearch()">Cadastrar Produto</a>
+        <a routerLink="/cadastro-de-produto" (click)="hideSearch()">&nbsp;Cadastrar Produto&nbsp;</a>
     </div>
     <div>
         <table *ngFor="let a of listEst">
@@ -21,6 +21,9 @@
                 </td>
                 <td>
                     <input type="submit" (click)="updateProduct(a, quantidade.value, nome.value)" value="Atualizar" id="updtBt">
+                </td>
+                <td>
+                    <input type="submit" (click)="confirmPopUp(a)" value="Deletar" id="updtBt">
                 </td>
             </tr>
         </table>
