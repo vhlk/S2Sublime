@@ -1,10 +1,10 @@
-import { Produto } from '../Produto';
+import { Produto } from '../../../../common/Produto';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class EstoqueService {
-    canecaPai: Produto = new Produto("12345", "Caneca Dia dos Pais", 15, "./assets/img/canecaDiaDosPais.jpg");
-    canecaMae: Produto = new Produto("12346", "Caneca Dia das Maes", 15, "./assets/img/canecaDiaDasMaes.jpg");
+    canecaPai: Produto = new Produto("12345", "Caneca Dia dos Pais", 15, "../assets/img/canecaDiaDosPais.jpg");
+    canecaMae: Produto = new Produto("12346", "Caneca Dia das Maes", 15, "../assets/img/canecaDiaDasMaes.jpg");
     produtos: Produto[] = [this.canecaPai, this.canecaMae];
 
     list(): Produto[] {

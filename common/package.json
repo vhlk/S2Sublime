@@ -1,0 +1,17 @@
+{
+  "name": "common",
+  "version": "0.1.0",
+  "description": "Common files S2Sublime",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Equipe S2Sublime",
+  "license": "MIT",
+  "dependencies": {
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "typescript": "~3.5.3"
+  }
+}

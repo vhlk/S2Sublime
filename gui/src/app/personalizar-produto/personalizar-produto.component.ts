@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PersonalizarProdutoService} from './personalizar-produto.service';
-import {PedidoPersonalizado} from '../pedido-personalizado';
+import {PedidoPersonalizado} from '../../../../common/pedido-personalizado';
 
 @Component({
   selector: 'app-personalizar-produto',

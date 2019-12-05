@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "description": "Server S2Sublime",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "./node_modules/typescript/bin/tsc",
+    "start": "npm run tsc && node compiledCode/server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vhlk/S2Sublime.git"
+  },
+  "author": "Equipe S2Sublime",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vhlk/S2Sublime/issues"
+  },
+  "homepage": "https://github.com/vhlk/S2Sublime#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "@types/express": "^4.0.37"
+  },
+  "devDependencies": {
+    "typescript": "~3.5.3"
+  }
+}
