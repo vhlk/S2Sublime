@@ -12,10 +12,14 @@ import { ProdutosService } from '../ProdutosService';
   export class EstoqueComponent implements OnInit {
     constructor(private estoqueService: EstoqueService, private produtosService: ProdutosService) { }
 
-    listEst: Produto[] = this.listEstoque();
+    listEst: Produto[] = [];
 
-    listEstoque(): Produto[] {
-        return this.estoqueService.list();
+    listEstoque(): void {
+        this.estoqueService.list()
+            .subscribe(
+                as => { this.listEst = as; },
+                msg => { alert(msg.message); }
+            );
     }
 
     maxProdEstoque(produto: Produto): number {
@@ -27,23 +31,23 @@ import { ProdutosService } from '../ProdutosService';
         return 0;
     }
 
-    updatePage(): void {
-        this.listEst = this.estoqueService.list()
-    }
-
     updateProduct(produto: Produto, qtd: number, nome: string): void {
-        this.estoqueService.updateProduct(produto,qtd,nome);
-        this.updatePage();
+        let prod = new Produto(produto.id, nome, qtd, "Outros", produto.imgSrc);
+        this.estoqueService.updateProduct(prod).subscribe(
+            (prod) => { if (prod == null) alert("Unexpected fatal error trying to update student information! Please contact the systems administratos."); },
+            (msg) => { alert(msg.message); }
+         );
+        this.listEstoque();
+        
     }
 
     confirmPopUp(produto: Produto): void{
         if(confirm("Você tem certeza que deseja deletar " + produto.produto + "?")){
-            this.estoqueService.deleteProduct(produto);
-            this.updatePage();
+            this.estoqueService.deleteProduct(produto).subscribe(res => this.listEstoque());          
         }
     }
 
     ngOnInit() {
-        this.listEst = this.estoqueService.list();
+        this.listEstoque();
       }
   }

@@ -2,10 +2,10 @@
 <html>
     <div class="header">
         <h1>Estoque</h1>
-        <a routerLink="/cadastro-de-produto" (click)="hideSearch()">&nbsp;Cadastrar Produto&nbsp;</a>
+        <a routerLink="/cadastro-de-produto">&nbsp;Cadastrar Produto&nbsp;</a>
     </div>
     <div>
-        <table *ngFor="let a of listEst">
+        <table ([ngModel])="listEst" *ngFor="let a of listEst">
             <tr>
                 <h2>{{a.produto}}</h2>
             </tr>

@@ -11,9 +11,10 @@ import { EstoqueService } from '../estoque/estoque.service';
 export class CategoriasComponent implements OnInit {
   categoria: String;
   shownProds: Produto[] = [];
-  listProds: Produto[] = this.estoqueService.list();
+  listProds: Produto[] = [];
   constructor(private router: Router, private _Activatedroute: ActivatedRoute, private estoqueService: EstoqueService) {
     router.events.subscribe(res => {
+      this.setListProds();
       this.sortbyCategory();
     });
   }
@@ -29,6 +30,14 @@ export class CategoriasComponent implements OnInit {
         this.shownProds.push(product);
       }
     }
+  }
+
+  setListProds() {
+    this.estoqueService.list()
+      .subscribe(
+        as => { this.listProds = as; },
+        msg => { alert(msg.message); }
+      );
   }
 
   ngOnInit() { }

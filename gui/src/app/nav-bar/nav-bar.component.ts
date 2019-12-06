@@ -14,7 +14,7 @@ import { ProdutosService } from '../ProdutosService';
 export class NavBarComponent implements OnInit {
 
   constructor(private estoqueService: EstoqueService, private produtosService: ProdutosService) { }
-  listProds: Produto[] = this.estoqueService.list();
+  listProds: Produto[] = [];
   searchedProds: Produto[] = [];
   searched:number =0;
 
@@ -32,9 +32,16 @@ export class NavBarComponent implements OnInit {
   hideSearch(){
     this.searched = 0;
   }
+  listEstoque(): void {
+    this.estoqueService.list()
+    .subscribe(
+        as => { this.listProds = as; },
+        msg => { alert(msg.message); }
+       );
+  }
   ngOnInit() {
     this.searched = 0;
-    this.listProds = this.estoqueService.list();
+    this.estoqueService.list();
   }
 
 }

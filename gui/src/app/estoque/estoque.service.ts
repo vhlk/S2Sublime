@@ -1,44 +1,59 @@
 import { Produto } from '../../../../common/Produto';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { retry, map } from 'rxjs/operators';
+import { promise } from 'protractor';
+import { sync } from 'glob';
 
 @Injectable()
 export class EstoqueService {
-    canecaPai: Produto = new Produto("12345", "Caneca Dia dos Pais", 15,"Canecas" , "../assets/img/canecaDiaDosPais.jpg");
-    canecaMae: Produto = new Produto("12346", "Caneca Dia das Maes", 15, "Canecas", "../assets/img/canecaDiaDasMaes.jpg");
-    produtos: Produto[] = [this.canecaPai, this.canecaMae];
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  private s2URL = 'http://localhost:3000';
 
-    list(): Produto[] {
-        let result: Produto[] = [];
-        for(let a of this.produtos){
-            result.push(a.copy());
+  constructor(private http: HttpClient) { }
+
+  list(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(this.s2URL + "/produtos")
+      .pipe(
+        retry(2)
+      );
+  }
+
+  updateProduct(prod: Produto): Observable<Produto> {
+    return this.http.put<any>(this.s2URL + "/produto", JSON.stringify(prod), { headers: this.headers }).pipe(
+      retry(2),
+      map(res => { if (res.success) { return prod; } else { return null; } })
+    );
+  }
+
+  cadastrarProduto(nome: string, qtd: number): Observable<any> {
+
+    return this.list().pipe(
+      map((listEst: Produto[]) => {
+        let newId = "777";
+        if (listEst.length != 0) {
+          let oldId = +listEst[listEst.length - 1].id;
+          oldId++;
+          newId = oldId.toString();
         }
-        return result;
-    }
 
-    updateProduct(prod: Produto, qtd: number, nome: string):void{
-        for(let a of this.produtos){
-            if(a.id === prod.id){
-                a.quantidade = qtd;
-                a.produto = nome;
-            }
-        }
-    }
+        let prod = new Produto(newId, nome, qtd, "Outros", "");
 
-    cadastrarProduto(nome: string, qtd: number):void{
-        let num = +this.produtos[this.produtos.length-1].id;
-        num += 1;
-        let newId = "" + num;
-        let novoProd = new Produto(newId,nome,qtd,"Outros","./assets/img/canecaDiaDosPais.jpg");
-        this.produtos.push(novoProd);
-    }
+        return this.http.post<any>(this.s2URL + "/produto", prod, { headers: this.headers })
+          .pipe(
+            retry(2),
+            map(res => { if (res.success) { return prod; } else { return null; } })
+          );
+      })
+    )
+  }
 
-    deleteProduct(prod: Produto):void{
-        let index;
-        for(let a of this.produtos){
-            if(a.id === prod.id){
-                index = this.produtos.indexOf(a);
-            }
-        }
-        this.produtos.splice(index,1);
-    }
+  deleteProduct(prod: Produto): Observable<boolean> {
+    return this.http.post<any>(this.s2URL + "/deleteProduto", prod, { headers: this.headers })
+      .pipe(
+        retry(2),
+        map(res => { if (res.success) { return true; } else { return false; } })
+      );
+  }
 }
