@@ -30,7 +30,7 @@ export class PersonalizarProdutoService {
   }
 
   getCategorias():string[]{
-    return ['Almofada','Camisa','Caneca','Quadro', 'Kits Festa'];
+    return ['Almofadas','Camisas','Canecas','Outros'];
   }
 
   getCores():string[]{
