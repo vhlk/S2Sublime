@@ -1,0 +1,42 @@
+<div id = "form">
+
+    <h5>Personalize seu produto</h5>
+
+    <mat-form-field class="formField">
+        <mat-label>Tipo do produto</mat-label>
+        <mat-select [(ngModel)] = "pedido.categoria">
+            <mat-option *ngFor = "let categorias of categorias" [value]="categorias">
+                {{categorias}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="formField">
+        <mat-label>Escolha a cor principal</mat-label>
+        <mat-select [(ngModel)] = "pedido.cor">
+            <mat-option *ngFor = "let cor of cores" [value] = "cor">
+                {{cor}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="formField">
+        <input [(ngModel)] = "pedido.quantidade" matInput type="number" placeholder="Quantidade desejada" min="1" max="20" >
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="formField">
+        <mat-label>Mensagem personalizada</mat-label>
+        <input [(ngModel)] = "pedido.mensagem"  matInput placeholder="Ex: Feliz aniversário!">
+    </mat-form-field>
+ 
+    <button mat-button id = "btnFinalizar" (click)="finalizarPedido(pedido)" > Finalizar </button>
+
+    <ul>
+        <li *ngFor = "let p of pedidos" [value] = "p">
+            <p>Tipo do produto: {{p.categoria}}</p>
+            <p>Cor do produto: {{p.cor}}</p>
+            <p>Quantidade informada: {{p.quantidade}}</p>
+            <p>Mensagem: {{p.mensagem}}</p>
+        </li> 
+    </ul>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { Produto } from '../Produto';
-import { EstoqueService } from '../EstoqueService';
+import { Produto } from '../../../../common/Produto';
+import { EstoqueService } from '../estoque/estoque.service';
 import { ProdutosService } from '../ProdutosService';
 
 @Component({
@@ -30,15 +30,26 @@ export class ListaDesejosComponent implements OnInit {
     }
 
     maxProdEstoque(produto: Produto): number {
-        for (let element of this.listEst)
+        for (let element of this.listEst) {
             if (element.id === produto.id) {
                 return element.quantidade;
             }
+        }
         return 0;
     }
 
-    updatePage(): void {
-        this.listProds = this.produtosService.list()
+    updateProdQtd(prod: Produto, qtd: number): void {
+        this.produtosService.setQtd(prod,qtd);
+    }
+
+    CompartilharLista(nome: string, email: string){
+        if(email != "" && nome != "" && email.includes("@")){
+            //mandar um email através do servidor
+            alert("Email enviado para "+nome);
+        }
+        else{
+            alert("Verifique os dados digitados!");
+        }
     }
 
     ngOnInit(): void {
