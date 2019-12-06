@@ -19,14 +19,12 @@ export class Estoque {
                 result = a.copy();
             }
         }
+        result;
         return result;
     }
 
-    cadastrarProduto(nome: string, qtd: number): Produto{
-        let num = +this.produtos[this.produtos.length-1].id;
-        num += 1;
-        let newId = "" + num;
-        let novoProd = new Produto(newId,nome,qtd,"./assets/img/canecaDiaDosPais.jpg");
+    cadastrarProduto(id: string, nome: string, qtd: number): Produto{
+        let novoProd = new Produto(id,nome,qtd,"./assets/img/canecaDiaDosPais.jpg");
         this.produtos.push(novoProd);
         return novoProd.copy();
     }

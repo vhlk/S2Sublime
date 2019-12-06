@@ -6,12 +6,13 @@ export class ProdutosService {
     produtos: Produto[] = [];
 
     add(prod: Produto): boolean {
+        let newProd = prod;
         for(let elems of this.produtos){
             if(elems.id === prod.id){
                 return false;
             }
         }
-        this.produtos.push(prod);
+        this.produtos.push(newProd);
     }
 
     list(): Produto[] {

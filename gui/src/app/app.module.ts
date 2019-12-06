@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router'
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule, MatSelectModule, MatButtonModule} from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
 import { ListaDesejosComponent } from './lista-desejos/lista-desejos.component';
 import { EstoqueService } from './estoque/estoque.service';
 import { ProdutosService } from './ProdutosService';
-import { PaginaProdutoComponent } from './PaginaProduto.component';
+import { PaginaInicialComponent } from './PaginaInicial.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
 import { PersonalizarProdutoComponent } from './personalizar-produto/personalizar-produto.component';
@@ -25,7 +26,7 @@ import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.co
   declarations: [
     AppComponent,
     ListaDesejosComponent,
-    PaginaProdutoComponent,
+    PaginaInicialComponent,
     NavBarComponent,
     SidenavBarComponent,
     PersonalizarProdutoComponent,
@@ -40,14 +41,15 @@ import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.co
     MatInputModule,
     MatSelectModule,
     MatToolbarModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: 'lista-desejos',
         component: ListaDesejosComponent
       },
       {
-        path: 'PaginaProduto',
-        component: PaginaProdutoComponent
+        path: '',
+        component: PaginaInicialComponent
       },
       {
         path: 'PersonalizarProduto',
