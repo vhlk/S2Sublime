@@ -32,7 +32,7 @@ import { ProdutosService } from '../ProdutosService';
     }
 
     updateProduct(produto: Produto, qtd: number, nome: string): void {
-        let prod = new Produto(produto.id, nome, qtd, produto.imgSrc);
+        let prod = new Produto(produto.id, nome, qtd, "Outros", produto.imgSrc);
         this.estoqueService.updateProduct(prod).subscribe(
             (prod) => { if (prod == null) alert("Unexpected fatal error trying to update student information! Please contact the systems administratos."); },
             (msg) => { alert(msg.message); }

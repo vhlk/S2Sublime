@@ -1,8 +1,8 @@
 import {Produto} from '../common/Produto';
 
 export class Estoque {
-    private canecaPai: Produto = new Produto("12345", "Caneca Dia dos Pais", 15, "../assets/img/canecaDiaDosPais.jpg");
-    private canecaMae: Produto = new Produto("12346", "Caneca Dia das Maes", 15, "../assets/img/canecaDiaDasMaes.jpg");
+    private canecaPai: Produto = new Produto("12345", "Caneca Dia dos Pais", 15,"Canecas", "../assets/img/canecaDiaDosPais.jpg");
+    private canecaMae: Produto = new Produto("12346", "Caneca Dia das Maes", 15, "Canecas","../assets/img/canecaDiaDasMaes.jpg");
     produtos: Produto[] = [this.canecaPai, this.canecaMae];
 
     getProdutos(): Produto[] {
@@ -24,7 +24,7 @@ export class Estoque {
     }
 
     cadastrarProduto(id: string, nome: string, qtd: number): Produto{
-        let novoProd = new Produto(id,nome,qtd,"./assets/img/canecaDiaDosPais.jpg");
+        let novoProd = new Produto(id,nome,qtd,"Outros","./assets/img/canecaDiaDosPais.jpg");
         this.produtos.push(novoProd);
         return novoProd.copy();
     }

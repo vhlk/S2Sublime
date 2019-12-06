@@ -18,7 +18,7 @@ export class ListaDesejosComponent implements OnInit {
     listEst: Produto[] = [];
 
     addListProds(produto: Produto, qtd: number): void {
-        let prod = new Produto(produto.id, produto.produto, qtd, produto.imgSrc);
+        let prod = new Produto(produto.id, produto.produto, qtd,produto.categoria, produto.imgSrc);
         if (!this.produtosService.add(prod)) {
             this.produtosService.setQtd(prod, qtd);
         }

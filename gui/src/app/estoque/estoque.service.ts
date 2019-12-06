@@ -38,7 +38,7 @@ export class EstoqueService {
           newId = oldId.toString();
         }
 
-        let prod = new Produto(newId, nome, qtd, "");
+        let prod = new Produto(newId, nome, qtd, "Outros", "");
 
         return this.http.post<any>(this.s2URL + "/produto", prod, { headers: this.headers })
           .pipe(

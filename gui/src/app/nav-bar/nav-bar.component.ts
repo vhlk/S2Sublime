@@ -24,7 +24,7 @@ export class NavBarComponent implements OnInit {
     let product;
     for (let element of this.listProds) {
       if(element.produto.toLowerCase().includes(productName.toLowerCase())){
-        product = new Produto(element.id,element.produto, element.quantidade, element.imgSrc);
+        product = new Produto(element.id,element.produto, element.quantidade, element.categoria, element.imgSrc);
         this.searchedProds.push(product);
       }
     }
