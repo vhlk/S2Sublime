@@ -3,6 +3,7 @@ import { Produto } from '../../../../common/Produto';
 import { EstoqueService } from '../estoque/estoque.service';
 import { ProdutosService } from '../ProdutosService';
 import { Router, RouterLink } from '@angular/router';
+import { copyFile } from 'fs';
 
 @Component({
     selector: 'app-cadastro-produto',
@@ -11,6 +12,9 @@ import { Router, RouterLink } from '@angular/router';
   })
 
   export class CadastroProdutoComponent implements OnInit {
+    selectedFile : File;
+    imagePreview;
+
     constructor(private estoqueService: EstoqueService, private produtosService: ProdutosService, private router:Router) { }
 
     cadastrarProduto(nome: string, qtd: number):void{
@@ -21,4 +25,13 @@ import { Router, RouterLink } from '@angular/router';
     ngOnInit() {
         
       }
+
+    onFileUpload(event) {
+      this.selectedFile = event.target.files[0]
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
   }

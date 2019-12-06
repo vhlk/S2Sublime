@@ -13,7 +13,18 @@
     </div>
 
     <div>
+        <input style="display: none" type="file" (change)="onFileUpload($event)" #selectFile>
+        <button (click)="selectFile.click()">Select File</button>
+    </div>
+
+    <div class="image-preview" >
+        <img [src]="imagePreview" style="width: 343px;height: 244px;">
+    </div>
+    
+    <div>
         <input type="submit" value="Cadastrar" (click)="cadastrarProduto(nome.value,qtd.value)">
     </div>
+
+    
 
 </html>
