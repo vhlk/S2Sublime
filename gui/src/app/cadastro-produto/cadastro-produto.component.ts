@@ -20,10 +20,12 @@ import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-p
 
 
     cadastrarProduto(nome: string, qtd: number, categoria: string):void{
-      if(nome != "" && qtd != null && categoria != ""){
+      if(nome != "" && qtd && qtd >= 0 && categoria != ""){
         this.estoqueService.cadastrarProduto(nome,qtd,categoria).subscribe(
             dale => dale.subscribe(res => this.router.navigate(["estoque"]))
          );
+      } else if (qtd < 0) {
+        alert("A quantidade não pode ser negativa!");
       } else {
         alert("Todos os campos precisam estar preenchidos!");
       }
