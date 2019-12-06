@@ -58,5 +58,6 @@ export class ListaDesejosComponent implements OnInit {
 
     ngOnInit(): void {
         this.listProds = this.produtosService.list();
+        this.listEstoque();
     }
 }

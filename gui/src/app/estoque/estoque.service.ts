@@ -33,8 +33,9 @@ export class EstoqueService {
       map((listEst: Produto[]) => {
         let newId = "777";
         if (listEst.length != 0) {
-          let oldId = listEst[listEst.length - 1].id
-          let newId = (oldId.valueOf() + 1).toString();
+          let oldId = +listEst[listEst.length - 1].id;
+          oldId++;
+          newId = oldId.toString();
         }
 
         let prod = new Produto(newId, nome, qtd, "");
