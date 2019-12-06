@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Produto } from '../../../../common/Produto';
 import { EstoqueService } from '../estoque/estoque.service';
 import { ProdutosService } from '../ProdutosService';
+import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-produto.service';
 
 @Component({
     selector: 'app-estoque',
@@ -10,7 +11,11 @@ import { ProdutosService } from '../ProdutosService';
   })
 
   export class EstoqueComponent implements OnInit {
-    constructor(private estoqueService: EstoqueService, private produtosService: ProdutosService) { }
+    categorias: string[];
+
+    constructor(private estoqueService: EstoqueService, private personalizarService: PersonalizarProdutoService) { 
+        this.categorias = personalizarService.getCategorias();
+    }
 
     listEst: Produto[] = [];
 
@@ -31,14 +36,10 @@ import { ProdutosService } from '../ProdutosService';
         return 0;
     }
 
-    updateProduct(produto: Produto, qtd: number, nome: string): void {
-        let prod = new Produto(produto.id, nome, qtd, "Outros", produto.imgSrc);
-        this.estoqueService.updateProduct(prod).subscribe(
-            (prod) => { if (prod == null) alert("Unexpected fatal error trying to update student information! Please contact the systems administratos."); },
-            (msg) => { alert(msg.message); }
-         );
-        this.listEstoque();
-        
+    updateProduct(produto: Produto, qtd: number, nome: string, categoria: string): void {
+        console.log(categoria);
+        let prod = new Produto(produto.id, nome, qtd, categoria, produto.imgSrc);
+        this.estoqueService.updateProduct(prod).subscribe(res => this.listEstoque());
     }
 
     confirmPopUp(produto: Produto): void{

@@ -16,6 +16,8 @@ export class Estoque {
                 a.quantidade = prod.quantidade;
                 a.produto = prod.produto;
                 a.imgSrc = prod.imgSrc;
+                a.categoria = prod.categoria;
+                console.log(a.categoria);
                 result = a.copy();
             }
         }
