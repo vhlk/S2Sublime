@@ -39,6 +39,15 @@ import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-p
     updateProduct(produto: Produto, qtd: number, nome: string, categoria: string): void {
         console.log(qtd);
         if(qtd && qtd >= 0 && nome != ""){
+            this.listEstoque();
+            console.log(this.listEst);
+            for(let i = 0; i < this.listEst.length; i++){
+                if(nome == this.listEst[i].produto){
+                    alert("Este produto já está cadastrado!");
+                    return;
+                }
+            }
+
             let prod = new Produto(produto.id, nome, qtd, categoria, produto.imgSrc);
             this.estoqueService.updateProduct(prod).subscribe(res => this.listEstoque());
         } else if (qtd < 0) {
