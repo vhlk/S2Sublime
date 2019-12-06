@@ -15,7 +15,7 @@ export class ListaDesejosComponent implements OnInit {
     constructor(private estoqueService: EstoqueService, private produtosService: ProdutosService) { }
 
     listProds: Produto[] = [];
-    listEst: Produto[] = this.listEstoque();
+    listEst: Produto[] = [];
 
     addListProds(produto: Produto, qtd: number): void {
         let prod = new Produto(produto.id, produto.produto, qtd, produto.imgSrc);
@@ -25,8 +25,12 @@ export class ListaDesejosComponent implements OnInit {
         this.listProds = this.produtosService.list();
     }
 
-    listEstoque(): Produto[] {
-        return this.estoqueService.list();
+    listEstoque(): void {
+        this.estoqueService.list()
+        .subscribe(
+            as => { this.listEst = as; },
+            msg => { alert(msg.message); }
+           );
     }
 
     maxProdEstoque(produto: Produto): number {

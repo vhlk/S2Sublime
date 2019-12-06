@@ -14,8 +14,11 @@ import { Router, RouterLink } from '@angular/router';
     constructor(private estoqueService: EstoqueService, private produtosService: ProdutosService, private router:Router) { }
 
     cadastrarProduto(nome: string, qtd: number):void{
-        this.estoqueService.cadastrarProduto(nome,qtd);
-        this.router.navigate(["estoque"]);
+        this.estoqueService.cadastrarProduto(nome,qtd).subscribe(
+            dale => dale.subscribe(res => this.router.navigate(["estoque"]))
+         );
+         
+        
     }
 
     ngOnInit() {
