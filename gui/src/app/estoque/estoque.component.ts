@@ -37,9 +37,13 @@ import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-p
     }
 
     updateProduct(produto: Produto, qtd: number, nome: string, categoria: string): void {
-        console.log(categoria);
-        let prod = new Produto(produto.id, nome, qtd, categoria, produto.imgSrc);
-        this.estoqueService.updateProduct(prod).subscribe(res => this.listEstoque());
+        console.log(qtd);
+        if(qtd && nome != ""){
+            let prod = new Produto(produto.id, nome, qtd, categoria, produto.imgSrc);
+            this.estoqueService.updateProduct(prod).subscribe(res => this.listEstoque());
+        } else {
+            alert("Todos os campos precisam estar preenchidos!");
+        }
     }
 
     confirmPopUp(produto: Produto): void{

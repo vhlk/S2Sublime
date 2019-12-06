@@ -20,9 +20,13 @@ import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-p
 
 
     cadastrarProduto(nome: string, qtd: number, categoria: string):void{
+      if(nome != "" && qtd != null && categoria != ""){
         this.estoqueService.cadastrarProduto(nome,qtd,categoria).subscribe(
             dale => dale.subscribe(res => this.router.navigate(["estoque"]))
          );
+      } else {
+        alert("Todos os campos precisam estar preenchidos!");
+      }
          
         
     }
