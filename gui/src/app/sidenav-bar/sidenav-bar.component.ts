@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidenav-bar.component.css']
 })
 export class SidenavBarComponent implements OnInit {
+  categorias: String[] = [];
 
-  constructor() { }
+  constructor() {
+    this.categorias = ["Almofadas", "Camisas", "Canecas", "Outros"];
+  }
 
   ngOnInit() {
   }

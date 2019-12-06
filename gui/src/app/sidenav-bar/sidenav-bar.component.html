@@ -1,8 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Solway&display=swap" rel="stylesheet">
 <div class="sidenav">
     <h1>Categorias</h1>
-    <a href="#">Camisas</a>
-    <a href="#">Canecas</a>
-    <a href="#">Almofadas</a>
-    <a href="#">Outros</a>
+    <div *ngFor="let a of categorias">
+        <a [routerLink]="['/categorias', a]">{{a}}</a>
+    </div>
 </div>

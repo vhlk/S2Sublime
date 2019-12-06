@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonalizarProdutoService } from './personalizar-produto/personalizar-produto.service';
 import { EstoqueComponent } from './estoque/estoque.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
+import { CategoriasComponent } from './categorias/categorias.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.co
     SidenavBarComponent,
     PersonalizarProdutoComponent,
     EstoqueComponent,
-    CadastroProdutoComponent
+    CadastroProdutoComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,10 @@ import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.co
       {
         path: 'cadastro-de-produto',
         component: CadastroProdutoComponent
+      },
+      {
+        path: 'categorias/:categoria',
+        component: CategoriasComponent
       }
     ]),
     BrowserAnimationsModule

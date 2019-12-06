@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css?family=Solway&display=swap" rel="stylesheet">
+<html>
+<h1>
+    {{categoria}}
+</h1>
+<form *ngFor="let a of shownProds" class="produtos">
+    <table>
+        <tr>
+            <h2>{{a.produto}}</h2>
+        </tr>
+        <tr>
+            <td><img src={{a.imgSrc}} style="width: 343px;height: 244px;" alt="a.produto"></td>
+        </tr>
+    </table>
+</form>
+
+</html>
