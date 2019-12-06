@@ -12,7 +12,7 @@ export class PersonalizarProdutoService {
     var result = null;
     if(this.pedidoCompleto(pedido)){
       this.pedidosRealizados.push(pedido);
-      result =  pedido;
+      result = pedido;
     } 
     return result;
   }

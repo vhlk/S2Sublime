@@ -9,7 +9,7 @@
         <a class="button" routerLink="/estoque" (click)="hideSearch()">&nbsp;Estoque&nbsp;</a>
         <div class="searchBar">
             <input class="searchInput" [(ngModel)]="productName" type="text" placeholder="Buscar Produtos">
-            <button class="searchButton" (click)="search(productName)"> <i class="material-icons">search</i> </button>
+            <button class="searchButton" (click)="search(productName)" routerLink="/PaginaProduto"> <i class="material-icons">search</i> </button>
         </div>
     </div>
 </mat-toolbar>
