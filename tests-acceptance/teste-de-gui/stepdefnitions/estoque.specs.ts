@@ -5,16 +5,16 @@ let expect = chai.expect;
 let should = chai.should();
 
 defineSupportCode(function( {Given, When, Then}) {
-    Given(/^que estou na página de "estoque"$/, async(produto) => {
+    Given(/^que estou na página de "estoque"$/, async() => {
         await browser.get("http://localhost:4200/");
         await expect(browser.getTitle()).to.eventually.equal('S2Sublime');
         await $("a[name='estoque']").click();
     });
-    Given(/^I am on "([^\"]*)" page$/, async(produto) => {
-        await element(by.name(<string> produto)).click();
-        await expect(browser.getTitle()).to.eventually.equal(produto);
+    Given(/^existe o produto "([^\"]*)" com quantidade "([^\"]*)" e categoria "([^\"]*)"$/, async(nome, quantidade, categoria) => {
+        var produtos : ElementArrayFinder = element.all(by.name('produto'));
+        await produtos.filter(elem => elem.getText().then(text => text === nome));
     });
-    Given(/^I am logged as "([^\"]*)"$/, async (usuario) => {
+    Given(/^eu mudo sua quantidade para "([^\"]*)"$/, async (quantidade) => {
         var usr = element(by.name('user'));
         await expect(usr.name()).to.eventually.equal(usuario);
     });
