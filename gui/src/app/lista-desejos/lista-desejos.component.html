@@ -6,7 +6,7 @@
 <div>
   <table *ngFor="let a of listProds">
     <tr>
-      <h2>{{a.produto}}</h2>
+      <h2 name="Produto">{{a.produto}}</h2>
     </tr>
     <tr>
       <td><img src={{a.imgSrc}} style="width: 343px;height: 244px;" alt="{{a.produto}}"></td>
@@ -16,16 +16,16 @@
       </td>
   </table>
 </div>
-<h1>
+<h1 name = "share_lista_des">
   Compartilhar Lista de Desejos:
 </h1>
 <table>
   <tr>
-    <td>Nome: <input placeholder="Nome da pessoa que deseja enviar" name="compartilhar" #nome></td>
-    <td>Email: <input placeholder="Email da pessoa que deseja enviar aqui" type="email" name="compartilhar" #email></td>
+    <td>Nome: <input placeholder="Nome da pessoa que deseja enviar" name="lista_des_namebox" #nome></td>
+    <td>Email: <input placeholder="Email da pessoa que deseja enviar aqui" type="email" name="lista_des_emailbox" #email></td>
   </tr>
   <tr>
-    <button type="button" (click)="CompartilharLista(nome.value, email.value)">Compartilhar Lista</button>
+    <button type="button" (click)="CompartilharLista(nome.value, email.value)" naem="share_lista_des">Compartilhar Lista</button>
   </tr>
 </table>
 

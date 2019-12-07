@@ -15,11 +15,11 @@
 
         <mat-form-field appearance="legacy" class="formField">
             <mat-label>Nome do Produto</mat-label>
-            <input [(ngModel)] = "nome"  matInput placeholder="Ex: Caneca Legal">
+            <input [(ngModel)] = "nome"  matInput placeholder="Ex: Caneca Legal" name="namebox">
         </mat-form-field>
 
         <mat-form-field class="formField">
-            <input [(ngModel)] = "qtd" matInput type="number" placeholder="Quantidade disponivel" min='1'>
+            <input [(ngModel)] = "qtd" matInput type="number" placeholder="Quantidade disponivel" min='1' name="qtdbox">
         </mat-form-field>
 
         <button mat-button id = "btnFinalizar" (click)="cadastrarProduto(nome,qtd,categoria)" > Cadastrar </button>

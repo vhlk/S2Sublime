@@ -20,15 +20,22 @@ export class PersonalizarProdutoComponent implements OnInit {
     this.cores = personalizarService.getCores();
   }
 
+  listPedidos():void {
+    this.personalizarService.listPedidos()
+      .subscribe(
+        as => {this.pedidos = as; }
+      );
+  }
+
   finalizarPedido(p:PedidoPersonalizado): void{
-    if(this.personalizarService.realizarPedido(p)){
+    if(this.personalizarService.realizarPedido(p.categoria, p.cor, p.quantidade, p.mensagem, null)){
       this.pedidos.push(p);
-      this.pedido = new PedidoPersonalizado("","",1,"");
+      this.pedido = new PedidoPersonalizado("","",1,"");  
     } 
   }
   
   ngOnInit() {
-    this.pedidos = this.personalizarService.getPedidos();
+    this.listPedidos();
   }
 
 }

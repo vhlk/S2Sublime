@@ -3,7 +3,7 @@ As a client
 I want to create a wishlist
 So that I can create a list of products I am looking for and, also, share with my friends or family
 
-Scenario: Adição à lista de desejos
+Scenario: Adicao a lista de Desejos
 Given exists a product “Caneca Dia dos Pais”
 And I am on “Caneca Dia dos Pais” page
 And I am logged as “Victor”
@@ -15,7 +15,7 @@ Then I receive a message saying the product was added to “Lista de Desejos”
 And I am on “Caneca Dia dos Pais” page
 And I can see that my “Lista de desejos” shows “1”
 
-Scenario: Adição à lista de desejos de um produto fora de estoque
+Scenario: Adicao a lista de desejos de um produto fora de estoque
 Given exists a product “Caneca Dia dos Pais”
 And I am on “Caneca Dia dos Pais” page
 And I am logged as “Victor”
@@ -35,7 +35,7 @@ And I select the “Compartilhar Lista” option
 Then I receive a message saying the “Lista de Desejos” was sent successfully
 And I am on “Lista de Desejos” page
 
-Scenario: Compartilhar Lista de Desejos com dados pessoais inválidos
+Scenario: Compartilhar Lista de Desejos com dados pessoais invalidos
 Given I am logged as “Victor”
 And I am on “Lista de desejos” page
 And I see the “Compartilhar Lista” option
