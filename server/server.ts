@@ -3,10 +3,13 @@ import bodyParser = require('body-parser');
 
 import {Produto} from '../common/Produto';
 import {Estoque} from './estoque';
+import {PedidoPersonalizado} from '../common/pedido-personalizado';
+import { ProdutosPersonalizados } from './produtosPersonalizados';
 
 var server = express();
 
 var produtos: Estoque = new Estoque();
+var pedidosPersonalizados: ProdutosPersonalizados = new ProdutosPersonalizados();
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
   res.header('Access-Control-Allow-Origin', "*");
@@ -17,6 +20,23 @@ var allowCrossDomain = function(req: any, res: any, next: any) {
 
 server.use(allowCrossDomain);
 server.use(bodyParser.json());
+
+server.get('/pedidosPersonalizados', function(req: express.Request, res:express.Response){
+  let pers: string = JSON.stringify(pedidosPersonalizados.getPedidos());
+  res.send(pers);
+})
+
+server.post('/pedidoPersonalizado', function(req: express.Request, res:express.Response){
+  let pers:PedidoPersonalizado = <PedidoPersonalizado> req.body;
+  console.log(pers);
+  pers = pedidosPersonalizados.realizarPedido(pers.categoria,pers.cor,pers.quantidade, pers.mensagem, null);
+  if(pers){
+    res.send({"success": "O pedido foi realizado com sucesso"})
+  } 
+  else {
+    res.send({"failure": "O pedido nao pode ser realizado"})
+  }
+})
 
 server.get('/produtos', function (req: express.Request, res: express.Response) {
   let prod: string = JSON.stringify(produtos.getProdutos());
