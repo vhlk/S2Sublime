@@ -40,6 +40,9 @@ export class CategoriasComponent implements OnInit {
       );
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.setListProds();
+    this.sortbyCategory();
+  }
 
 }
