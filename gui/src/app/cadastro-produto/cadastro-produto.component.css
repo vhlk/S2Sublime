@@ -1,0 +1,19 @@
+
+#form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 30px auto;
+    min-width: 480px;
+    max-width: 780px;
+}
+
+.formField{
+    margin: 10px 0px;
+}
+
+#btnFinalizar {
+    width: 500px;
+    margin: 20px auto;
+}
+

@@ -27,7 +27,7 @@ export class EstoqueService {
     );
   }
 
-  cadastrarProduto(nome: string, qtd: number): Observable<any> {
+  cadastrarProduto(nome: string, qtd: number, categoria: string): Observable<any> {
 
     return this.list().pipe(
       map((listEst: Produto[]) => {
@@ -38,7 +38,7 @@ export class EstoqueService {
           newId = oldId.toString();
         }
 
-        let prod = new Produto(newId, nome, qtd, "Outros", "");
+        let prod = new Produto(newId, nome, qtd, categoria, "");
 
         return this.http.post<any>(this.s2URL + "/produto", prod, { headers: this.headers })
           .pipe(

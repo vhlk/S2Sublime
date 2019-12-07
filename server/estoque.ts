@@ -16,6 +16,8 @@ export class Estoque {
                 a.quantidade = prod.quantidade;
                 a.produto = prod.produto;
                 a.imgSrc = prod.imgSrc;
+                a.categoria = prod.categoria;
+                console.log(a.categoria);
                 result = a.copy();
             }
         }
@@ -23,8 +25,8 @@ export class Estoque {
         return result;
     }
 
-    cadastrarProduto(id: string, nome: string, qtd: number): Produto{
-        let novoProd = new Produto(id,nome,qtd,"Outros","./assets/img/canecaDiaDosPais.jpg");
+    cadastrarProduto(id: string, nome: string, qtd: number, categoria: String): Produto{
+        let novoProd = new Produto(id,nome,qtd,categoria,"./assets/img/canecaDiaDosPais.jpg");
         this.produtos.push(novoProd);
         return novoProd.copy();
     }

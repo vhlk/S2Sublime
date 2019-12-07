@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {  Router } from '@angular/router';
 import { Produto } from '../../../../common/Produto';
 import { EstoqueService } from '../estoque/estoque.service';
 import { ProdutosService } from '../ProdutosService';
@@ -13,7 +13,11 @@ import { ProdutosService } from '../ProdutosService';
 
 export class NavBarComponent implements OnInit {
 
-  constructor(private estoqueService: EstoqueService, private produtosService: ProdutosService) { }
+  constructor(private estoqueService: EstoqueService, private router:Router) { 
+    router.events.subscribe(res => {
+      this.listEstoque();
+    });
+  }
   listProds: Produto[] = [];
   searchedProds: Produto[] = [];
   searched:number =0;
@@ -41,7 +45,7 @@ export class NavBarComponent implements OnInit {
   }
   ngOnInit() {
     this.searched = 0;
-    this.estoqueService.list();
+    this.listEstoque();
   }
 
 }

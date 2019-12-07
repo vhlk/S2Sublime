@@ -46,7 +46,7 @@ server.get('/produtos', function (req: express.Request, res: express.Response) {
 server.post('/produto', function (req: express.Request, res: express.Response) {
   let prod: Produto = <Produto> req.body;
   console.log(prod);
-  prod = produtos.cadastrarProduto(prod.id, prod.produto, prod.quantidade);
+  prod = produtos.cadastrarProduto(prod.id, prod.produto, prod.quantidade, prod.categoria);
   if(prod){
     res.send({"success": "O produto foi cadastrado com sucesso"});
   }
