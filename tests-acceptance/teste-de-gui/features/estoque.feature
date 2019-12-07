@@ -8,20 +8,19 @@ Scenario: Editar produto em estoque com sucesso
     And existe o produto “camisa do batman” com quantidade “13” e categoria "Camisa"
     When eu seleciono o produto “camisa do batman”
     And eu mudo sua quantidade para "14"
-    Then estou na página de “Estoque”
+    Then estou na página de “estoque”
     And eu vejo o produto “camisa do batman” com quantidade “14” e categoria "Camisa"
 
 Scenario: Editar produto em estoque com dados inválidos
     Given que existe o produto “camisa do batman” com quantidade “14” e categoria "Camisa"
     And estou na página de “Estoque”
     When eu seleciono o produto “camisa do batman”
-    And eu mudo seu preço para “bananas”
+    And eu mudo sua quantidade para “bananas”
     Then eu estou na página de “Estoque”
     And eu vejo uma mensagem de erro.
 
-Scenario: Cadastro de produtos sem todos os dados
-    Given que estou logado como “admin”
-    And estou na página de “estoque”
+Scenario: Cadastro de produtos sem todos os dado
+    Given estou na página de “estoque”
     And não existe um produto “camisa do robin” no sistema
     When eu seleciono a opção de “Cadastrar produto”
     And eu informo o nome do produto “camisa do robin”
@@ -44,7 +43,7 @@ Scenario: Remoção de produtos bem sucedida
     And estou na página de “estoque”
     And existe um produto “camisa do batman” no sistema
     When eu seleciono a opção de “remover produto”
-    And eu vejo uma mensagem de confirmação
     Then eu estou na página de “estoque”
+    And eu vejo uma mensagem de confirmação
     And eu vejo que o produto “camisa do batman” não está na página de “estoque”
 
