@@ -27,10 +27,10 @@ server.get('/pedidosPersonalizados', function(req: express.Request, res:express.
 })
 
 server.post('/pedidoPersonalizado', function(req: express.Request, res:express.Response){
-  let pers:PedidoPersonalizado = <PedidoPersonalizado> req.body;
+  let pers:PedidoPersonalizado = <PedidoPersonalizado>req.body;
   console.log(pers);
-  pers = pedidosPersonalizados.realizarPedido(pers.categoria,pers.cor,pers.quantidade, pers.mensagem, null);
-  if(pers){
+  let b = pedidosPersonalizados.realizarPedido(pers.categoria,pers.cor,pers.quantidade, pers.mensagem, null);
+  if(b){
     res.send({"success": "O pedido foi realizado com sucesso"})
   } 
   else {

@@ -9,16 +9,13 @@ import { Observable } from 'rxjs';
 })
 export class PersonalizarProdutoService {
 
-  private headers = new HttpHeaders({ 'Content-Type': 'application/json'})
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json'});
   private s2URL = 'http://localhost:3000';
   
   constructor(private http: HttpClient){}
 
   listPedidos(): Observable<PedidoPersonalizado[]>{
-    return this.http.get<PedidoPersonalizado[]>(this.s2URL + "/pedidosPersonalizados")
-      .pipe(
-        retry(2)
-      );
+    return this.http.get<PedidoPersonalizado[]>(this.s2URL + "/pedidosPersonalizados");
   }
   
   realizarPedido(categoria: string, cor:string, quantidade:number, mensagem:string, imgSrc:File): Observable<any>{
