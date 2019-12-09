@@ -18,8 +18,15 @@ export class ListaDesejosComponent implements OnInit {
     listEst: Produto[] = [];
 
     addListProds(produto: Produto, qtd: number): void {
-        let prod = new Produto(produto.id, produto.produto, qtd,produto.categoria, produto.imgSrc);
+        let prod = new Produto(produto.id, produto.produto, qtd, produto.categoria, produto.imgSrc);
         if (!this.produtosService.add(prod)) {
+            var qtdAtual = +0;
+            for (let elems of this.listProds) {
+                if (elems.id == produto.id) {
+                    qtdAtual = +elems.quantidade;
+                }
+            }
+            qtd = Math.min((+qtd + qtdAtual), this.maxProdEstoque(produto));
             this.produtosService.setQtd(prod, qtd);
         }
         this.listProds = this.produtosService.list();
@@ -27,10 +34,10 @@ export class ListaDesejosComponent implements OnInit {
 
     listEstoque(): void {
         this.estoqueService.list()
-        .subscribe(
-            as => { this.listEst = as; },
-            msg => { alert(msg.message); }
-           );
+            .subscribe(
+                as => { this.listEst = as; },
+                msg => { alert(msg.message); }
+            );
     }
 
     maxProdEstoque(produto: Produto): number {
@@ -43,16 +50,23 @@ export class ListaDesejosComponent implements OnInit {
     }
 
     updateProdQtd(prod: Produto, qtd: number): void {
-        this.produtosService.setQtd(prod,qtd);
+        this.produtosService.setQtd(prod, qtd);
     }
 
-    CompartilharLista(nome: string, email: string){
-        if(email != "" && nome != "" && email.includes("@")){
+    CompartilharLista(nome: string, email: string) {
+        if (email != "" && nome != "" && email.includes("@")) {
             //mandar um email através do servidor
-            alert("Email enviado para "+nome);
+            alert("Email enviado para " + nome);
         }
-        else{
+        else {
             alert("Verifique os dados digitados!");
+        }
+    }
+
+    confirmPopUp(prod: Produto): void {
+        if (confirm("Você tem certeza que deseja deletar " + prod.produto + "?")) {
+            this.produtosService.delete(prod);
+            this.listProds = this.produtosService.list();
         }
     }
 

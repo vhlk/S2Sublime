@@ -30,4 +30,12 @@ export class ProdutosService {
             }
         }
     }
+
+    delete(prod: Produto): void {
+        for (let i = 0; i < this.produtos.length; i++) {
+            if(this.produtos[i].id === prod.id){
+                this.produtos.splice(i,1);
+            }
+        }
+    }
 }

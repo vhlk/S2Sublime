@@ -28,6 +28,14 @@ export class PaginaInicialComponent implements OnInit {
     addListProds(produto: Produto, qtd: number): void {
         let prod = new Produto(produto.id, produto.produto, qtd, produto.categoria, produto.imgSrc);
         if (!this.produtosService.add(prod)) {
+            let qtdAtual = +0;
+            let listProds = this.produtosService.list();
+            for (let elems of listProds) {
+                if (elems.id == produto.id) {
+                    qtdAtual = +elems.quantidade;
+                }
+            }
+            qtd = Math.min((+qtd + qtdAtual), this.maxProdEstoque(produto));
             this.produtosService.setQtd(prod, qtd);
         }
     }
