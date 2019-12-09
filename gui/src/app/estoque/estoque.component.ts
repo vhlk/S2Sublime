@@ -52,10 +52,11 @@ import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-p
 
             let prod = new Produto(produto.id, nome, qtd, categoria, produto.imgSrc);
             this.estoqueService.updateProduct(prod).subscribe(res => this.listEstoque());
+            console.log(prod);
         } else if (qtd < 0) {
             alert("A quantidade não pode ser negativa!");
         } else {
-            alert("Todos os campos precisam estar preenchidos!");
+            alert("Todos os campos precisam estar preenchidos corretamente!");
         }
     }
 
