@@ -5,7 +5,7 @@
         <a routerLink="/cadastro-de-produto">&nbsp;Cadastrar Produto&nbsp;</a>
     </div>
     <div>
-        <table ([ngModel])="listEst" *ngFor="let a of listEst">
+        <table ([ngModel])="listEst" *ngFor="let a of listEst" name="estoqueList">
             <tr>
                 <h2>{{a.produto}}</h2>
             </tr>
