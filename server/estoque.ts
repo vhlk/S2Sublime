@@ -1,9 +1,7 @@
 import {Produto} from '../common/Produto';
 
 export class Estoque {
-    private canecaPai: Produto = new Produto("12345", "Caneca Dia dos Pais", 15,"Canecas", "../assets/img/canecaDiaDosPais.jpg");
-    private canecaMae: Produto = new Produto("12346", "Caneca Dia das Maes", 15, "Canecas","../assets/img/canecaDiaDasMaes.jpg");
-    produtos: Produto[] = [this.canecaPai, this.canecaMae];
+    produtos: Produto[] = [];
 
     getProdutos(): Produto[] {
         return this.produtos;
