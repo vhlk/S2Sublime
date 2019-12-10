@@ -14,6 +14,9 @@ import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-p
   export class CadastroProdutoComponent implements OnInit {
     categorias: string[];
     listEst: Produto[];
+    selectedFile : File;
+    imagePreview;
+    imageName;
 
     constructor(private estoqueService: EstoqueService, private personalizarService: PersonalizarProdutoService, private router:Router) {
         this.categorias = personalizarService.getCategorias();
@@ -27,7 +30,8 @@ import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-p
           );
      }
 
-    cadastrarProduto(nome: string, qtd: number, categoria: string):void{
+    cadastrarProduto(nome: string, qtd: number, categoria: string/*, image: string*/):void{
+      // não to conseguindo passar como parametro o ngmodel, então ta usando o atributo baseado no imagePreview mesmo
       if(nome != "" && qtd && qtd >= 0 && categoria != ""){
         this.listEstoque();
         for(let i = 0; i < this.listEst.length; i++){
@@ -37,7 +41,7 @@ import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-p
           }
         }
 
-        this.estoqueService.cadastrarProduto(nome,qtd,categoria).subscribe(
+        this.estoqueService.cadastrarProduto(nome,qtd,categoria,this.imageName).subscribe(
             dale => dale.subscribe(res => this.router.navigate(["estoque"]))
          );
       } else if (qtd < 0) {
@@ -49,7 +53,20 @@ import {PersonalizarProdutoService} from '../personalizar-produto/personalizar-p
         
     }
 
+    onFileUpload(event) {
+      this.selectedFile = event.target.files[0]
+      this.imageName = this.selectedFile.name;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  
+
     ngOnInit() {
         this.listEstoque();
+        this.imagePreview = "./assets/img/default.png";
+        this.imageName = "default.png"
       }
   }
