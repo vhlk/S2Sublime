@@ -28,10 +28,10 @@
         </div>
     
         <div class="image-preview">
-            <img [src]="imagePreview" style="width: 343px;height: 244px;">
+            <img ng-model = "imgSrc" [src]="imagePreview" style="width: 443px;height: 294px;">
         </div>
 
-        <button mat-button id = "btnFinalizar" (click)="cadastrarProduto(nome,qtd,categoria, imagePreview)" > Cadastrar </button>
+        <button mat-button id = "btnFinalizar" (click)="cadastrarProduto(nome,qtd,categoria)" > Cadastrar </button>
 
     </div>
 
