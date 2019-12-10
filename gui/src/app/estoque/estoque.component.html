@@ -13,7 +13,7 @@
                 <td><img src="{{a.imgSrc}}" style="width: 343px;height: 244px;" alt="{{a.produto}}"></td>
                 <td>
                     <h3>Quantidade</h3>
-                    <input type="number" value="{{maxProdEstoque(a)}}" #quantidade>
+                    <input type="number" value="{{maxProdEstoque(a)}}" #quantidade name="qtdProduto">
                 </td>
                 <td>
                     <h3>Nome do Produto</h3>
@@ -29,7 +29,7 @@
                     </select>
                 </td>
                 <td>
-                    <input type="submit" (click)="updateProduct(a, quantidade.value, nome.value, categoria.value)" value="Atualizar" id="updtBt">
+                    <input type="submit" (click)="updateProduct(a, quantidade.value, nome.value, categoria.value)" value="Atualizar" id="updtBt" name="Atualizar">
                 </td>
                 <td>
                     <input type="submit" (click)="confirmPopUp(a)" value="Deletar" id="updtBt">

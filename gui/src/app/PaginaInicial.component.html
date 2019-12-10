@@ -8,7 +8,7 @@
         <tr>
             <td><img src="{{a.imgSrc}}" style="width: 270px;height: 220px"></td>
             <td><table>
-                    <div name="produto">{{a.produto}}</div>
+                    <tr name="produto">{{a.produto}}</tr>
                     <tr><input type="number" name="qtdAdicionarLista" value="1" min="1" max={{a.quantidade}}
                             #quantidade>
                         <input type="submit" (click)="addListProds(a, quantidade.value)" name="add_lista_desejos"

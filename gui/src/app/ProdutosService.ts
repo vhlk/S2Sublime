@@ -13,6 +13,7 @@ export class ProdutosService {
             }
         }
         this.produtos.push(newProd);
+        return true;
     }
 
     list(): Produto[] {
