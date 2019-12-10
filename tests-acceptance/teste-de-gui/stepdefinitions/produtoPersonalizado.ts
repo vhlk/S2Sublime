@@ -12,17 +12,20 @@ defineSupportCode(function( {Given, When, Then}) {
     Given(/^I am on "([^\"]*)" page$/, async() => {
         await browser.get("http://localhost:3000/personalizarProduto");
     });
-    Given(/^I choose "Camisa","Azul", "1x" and "Feliz dia dos pais"$/, async(nome) => {
-        await element(by.className("formField"));     
+    Given(/^I choose "([^\"]*)","([^\"]*)", "(\d*)" and "([^\"]*)"$/, async(categoria, cor, quantidade, mensagem) => {
+        await $("input[name='categoria']").sendKeys(<string>categoria);
+        await $("input[name='cor']").sendKeys(<string>cor);
+        await $("input[name='quantidade']").sendKeys(<string>quantidade);
+        await $("input[name='mensagem']").sendKeys(<string>mensagem);   
     });
     When(/^I ask the system to "Finalizar"$/, async () => {
         await element(by.buttonText('Finalizar')).click();
     });
     Then(/^Then I am at “Submitted request” page $/, async(nome, pagina) => {
-        
-    });
-    Then(/^estou na página de "Produto Personalizado"$/, async () => {
         await browser.get("http://localhost:3000/personalizarProduto");
     });
-
+    Then(/^I see "(\d*)" product at list"$/, async () => {
+        var pedidos : ElementArrayFinder = element.all(by.class('pedidosList'));;
+        expect(Promise.resolve(pedidos.length)).to.eventually.equal(1);
+    });
 })
