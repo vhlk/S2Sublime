@@ -8,8 +8,7 @@ Scenario: Editar produto em estoque com sucesso
     And existe o produto “camisa do batman” com quantidade “13” e categoria "Camisa"
     When eu seleciono o produto “camisa do batman”
     And eu mudo sua quantidade para "14"
-    Then estou na página de “estoque”
-    And eu vejo o produto “camisa do batman” com quantidade “14” e categoria "Camisa"
+    Then eu vejo o produto “camisa do batman” com quantidade “14” e categoria "Camisa"
 
 Scenario: Editar produto em estoque com dados inválidos
     Given que existe o produto “camisa do batman” com quantidade “14” e categoria "Camisa"
@@ -35,7 +34,7 @@ Scenario: Cadastro de um produto já cadastrado
     When eu seleciono a opção de “Cadastrar produto”
     And eu informo o nome do produto “camisa do batman” com quantidade do produto “12” e categoria "Camisa"
     Then eu estou na página de “Cadastrar produto”
-    And eu vejo uma mensagem sobre este produto já estar cadastrado
+    And eu vejo uma mensagem sobre "camisa do batman" já estar cadastrado
     And ainda existe um produto “camisa do batman” no sistema
 
 Scenario: Remoção de produtos bem sucedida
@@ -45,5 +44,5 @@ Scenario: Remoção de produtos bem sucedida
     When eu seleciono a opção de “remover produto”
     Then eu estou na página de “estoque”
     And eu vejo uma mensagem de confirmação
-    And eu vejo que o produto “camisa do batman” não está na página de “estoque”
+    And eu vejo que o produto “camisa do batman” não está na página de estoque
 
