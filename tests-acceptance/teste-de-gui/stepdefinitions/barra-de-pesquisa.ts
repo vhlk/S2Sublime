@@ -20,19 +20,19 @@ defineSupportCode(function( {Given, When, Then}) {
         await browser.get("http://localhost:4200/");
     });
     Given(/^Não há produtos com "([^\"]*)" como substring cadastrados$/, async (search) => {
-        var searchedProds : ElementArrayFinder = element.all(by.class('produtos'));
+        var searchedProds : ElementArrayFinder = element.all(by.name('estoqueList'));
         searchedProds.filter(elem => elem.produto==search).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
     });
     When(/^Eu coloco na barra de pesquisa "([^\"]*)"$/, async (search)=>{
-        await $("input[class='searchInput']").sendKeys(<string> search);
-        await $("button[class='searchButton']").click();
+        await $("input[name='searchInput']").sendKeys(<string> search);
+        await $("button[name='searchButton']").click();
     });
     Then(/^Eu vejo os produtos "([^\"]*)" e "([^\"]*)"$/, async (prod1, prod2) => {
-        var searchedProds : ElementArrayFinder = element.all(by.class('searchResults'));
+        var searchedProds : ElementArrayFinder = element.all(by.name('searchResults'));
         searchedProds.filter(elem => elem.produto==prod1||elem.produto==prod2).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(2));
     });
     Then(/^Eu vejo que não há resultado para minha pesquisa "([^\"]*)"$/, async (search) => {
-        var searchedProds : ElementArrayFinder = element.all(by.class('searchResults'));
+        var searchedProds : ElementArrayFinder = element.all(by.name('searchResults'));
         searchedProds.filter(elem => elem.produto==search).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
     });
 })
