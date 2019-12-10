@@ -25,8 +25,8 @@ export class Estoque {
         return result;
     }
 
-    cadastrarProduto(id: string, nome: string, qtd: number, categoria: String): Produto{
-        let novoProd = new Produto(id,nome,qtd,categoria,"./assets/img/canecaDiaDosPais.jpg");
+    cadastrarProduto(id: string, nome: string, qtd: number, categoria: String, image: String): Produto{
+        let novoProd = new Produto(id,nome,qtd,categoria,"./assets/img/" + image);
         this.produtos.push(novoProd);
         return novoProd.copy();
     }

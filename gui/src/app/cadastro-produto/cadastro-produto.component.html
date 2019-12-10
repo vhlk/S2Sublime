@@ -21,8 +21,17 @@
         <mat-form-field class="formField">
             <input [(ngModel)] = "qtd" matInput type="number" placeholder="Quantidade disponivel" min='1' name="qtdbox">
         </mat-form-field>
+        
+        <div>
+            <input style="display: none" type="file" (change)="onFileUpload($event)" #selectFile>
+            <button mat-button (click)="selectFile.click()">Select File</button>
+        </div>
+    
+        <div class="image-preview">
+            <img [src]="imagePreview" style="width: 343px;height: 244px;">
+        </div>
 
-        <button mat-button id = "btnFinalizar" (click)="cadastrarProduto(nome,qtd,categoria)" > Cadastrar </button>
+        <button mat-button id = "btnFinalizar" (click)="cadastrarProduto(nome,qtd,categoria, imagePreview)" > Cadastrar </button>
 
     </div>
 
